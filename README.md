@@ -10,3 +10,11 @@ I also learned that it's important to save the file in VScode before attempting 
 ELEVATOR PITCH:
 My startup project is going to be a group "StrengthQuest" where people can login, connect with their friends, and work together or compete to achieve workout goals. Users will set distance and weight goals, and report the results of each workout manually. Then their group page will update with the total progress and the current group leaders (if the competitive mode is on).
 ![IMG-6119](https://user-images.githubusercontent.com/70787894/215224390-96951d15-b8e9-4a11-bce7-9d93682a9f09.jpg)
+
+
+Simon CSS:
+  - All the CSS for the application can be in one file, rather than individual CSS files for each page
+  - It's really cool how the shapes of the buttons can be achieved with just the "button radius" feature
+  - Along those same lines ^ I learned that the border radius can be adjusted to only apply to specific corners (this is true for margins as well)
+  - The cursor shape can be adjusted for specific buttons 
+  
