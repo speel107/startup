@@ -2,7 +2,7 @@
 ## Elevator Pitch
 Have you ever wanted a pet, but your apartment said no? Have you ever had a pet and wished that it could have some friends? A Slug Buddy is the answer! This is an interactive web application that allows you to name and customize your very own pet slug from a robust set of options. Once your slug is created, go out and get your buddies to create their own slugs and add them to your slug's group of friends. Nothing hypes up a party like creating slug buddies!
 ## Design
-An image or two that illustrate the design
+![Design mockup](SlugBuddy.jpg)
 ### Key Features
 - Secure login over HTTPS
 - Real-time customization of the slug
