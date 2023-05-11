@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Tell browsers not to scale the viewport automatically -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slug Buddies</title>
+    <a href="index.html">
+        <button class="submit">Logout</button>
+    </a>
+  </head>
+  <body>
+    <!-- Use header, main, and footer elements to give semantic structure -->
+    <header>
+      <h1>Slug Buddies</h1>
+      <h4>Insert Logo here</h6>
+
+      <!-- Navigation elements -->
+      <nav>
+        <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
+        <menu>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="profile.html">Profile</a></li>
+          <li><a href="friends.html">My Friends</a></li>
+          <li><a href="connect.html">Connect</a></li>
+        </menu>
+      </nav>
+
+      <!-- Since we don't have the ability to style we use old style HTML to give some visual formatting -->
+      <hr />
+    </header>
+
+    <main>
+      <h2>Find New Friends</h2>
+      <h4>User: **Insert username here**</h4>
+      <p>This will be the database data</p>
+      <table>
+        <tr>
+            <div>
+                <p>**Insert image here**</p>
+                <p><b>Slug1 Name</b></p>
+                <p>Creator's name</p>
+                <p>Number of friends (this is the Websocket live update)</p>
+                <button>Add Friend</button>
+            </div>
+            <div>
+                <p>**Insert image here**</p>
+                <p><b>Slug2 Name</b></p>
+                <p>Creator's name</p>
+                <p>Number of friends (this is the Websocket live update)</p>
+                <button>Add Friend</button>
+            </div>
+        </tr>
+      </table>
+      <a href="connect.html">
+        <button class="submit">My Slug</button>
+      </a>
+      <a href="friends.html">
+        <button class="submit">Return to Friends</button>
+      </a>
+    </main>
+
+    <footer>
+      <hr />
+      <span class="text-reset">Sara Peel</span>
+      <br />
+      <a href="https://github.com/speel107/startup">GitHub</a>
+    </footer>
+  </body>
+</html>
