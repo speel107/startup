@@ -10,11 +10,11 @@ Have you ever wanted a pet, but your apartment said no? Have you ever had a pet 
 - Slugs and friends are stored between logins
 ## Deliverables
 ### HTML
-- [ ] 4 HTML pages
-- [ ] Links between the pages
-- [ ] Form submission for login and naming
-- [ ] Images included for the slug
+- [x] 4 HTML pages
+- [x] Links between the pages
+- [x] Form submission for login and naming
 ### CSS
+- [ ] Images included for the slug
 - [ ] Consistent page font/color scheme
 - [ ] Image styling for the slug
 - [ ] Responsive to alternate sizing (mobile/laptop)
