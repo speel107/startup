@@ -9,9 +9,11 @@
   border-radius: 50%;
 }
 
-.connections {
-  display: grid !important;
-  grid-gap: 1em;
+.container {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 3em;
 }
 
 .card {
