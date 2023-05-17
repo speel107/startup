@@ -1,16 +1,21 @@
-.new-connections {
+.edit-buttons {
+  display: grid !important;
+  grid-gap: 1em;
+}
+
+.slug-profile {
+  height: 18rem;
+  width: 18rem;
+  border-radius: 50%;
+}
+
+.connections {
   display: grid !important;
   grid-gap: 1em;
 }
 
 .card {
   color: #4D6470 !important;
-}
-
-.slug-workshop {
-  display: flex;
-  flex-direction: row !important;
-  flex-wrap: nowrap;
 }
 
 body {

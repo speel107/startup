@@ -41,43 +41,40 @@
       <div name="slug-workshop">
         <div name="workshop-profile">
           <h3>waffles</h3>
-          <img alt="my slug" src="./images/slug.png" />
+          <img class="slug-profile" alt="my slug" src="./images/slug.png" />
           <form method="get">
-            <label for="name">Edit Name</label>
-            <input type="text" id="name" placeholder="New name here" />
-            <button type="submit">Change</button>
+            <input type="text" id="name" placeholder="Edit Name Here" />
+            <button class="btn btn-info" type="submit">Change</button>
           </form>
         </div>
-        <div class="container-fluid" name="workshop-buttons">
-          <ul>
-              <li>
-                <button>Previous</button>
-                <p>Hairstyle</p>
-                <button>Next</button>
-              </li>
-              <li>
-                <button>Previous</button>
-                <p>Primary color</p>
-                <button>Next</button>
-              </li>
-              <li>
-                <button>Previous</button>
-                <p>Secondary Color</p>
-                <button>Next</button>
-              </li>
-              <li>
-                <button>Previous</button>
-                <p>Expression</p>
-                <button>Next</button>
-              </li>
-          </ul>
+        <div class="edit-buttons" name="workshop-buttons">
+              <div class="cosmetic-option">
+                <button class="btn btn-info" type="submit">Previous</button>
+                <h5>Hairstyle</h5>
+                <button class="btn btn-info" type="submit">Next</button>
+              </div>
+              <div class="cosmetic-option">
+                <button class="btn btn-info" type="submit">Previous</button>
+                <h5>Primary color</h5>
+                <button class="btn btn-info" type="submit">Next</button>
+              </div>
+              <div class="cosmetic-option">
+                <button class="btn btn-info" type="submit">Previous</button>
+                <h5>Secondary Color</h5>
+                <button class="btn btn-info" type="submit">Next</button>
+              </div>
+              <div class="cosmetic-option">
+                <button class="btn btn-info" type="submit">Previous</button>
+                <h5>Expression</h5>
+                <button class="btn btn-info" type="submit">Next</button>
+              </div>
         </div>
       </div>
       <a href="friends.html">
-        <button class="submit">My Friends</button>
+        <button class="btn btn-info" type="submit">My Friends</button>
       </a>
       <a href="connect.html">
-        <button class="submit">Add Friends</button>
+        <button class="btn btn-info" type="submit">Add Friends</button>
       </a>
     </main>
 
