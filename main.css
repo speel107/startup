@@ -1,3 +1,18 @@
+.new-connections {
+  display: grid !important;
+  grid-gap: 1em;
+}
+
+.card {
+  color: #4D6470 !important;
+}
+
+.slug-workshop {
+  display: flex;
+  flex-direction: row !important;
+  flex-wrap: nowrap;
+}
+
 body {
   display: flex;
   flex-direction: column;
