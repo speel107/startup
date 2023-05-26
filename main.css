@@ -38,6 +38,15 @@
   align-items: center;
 }
 
+#user-profile-name {
+  display: flex;
+  flex-direction: row;
+}
+
+.player-name {
+  padding: 0 1rem;
+}
+
 body {
   display: flex;
   flex-direction: column;
