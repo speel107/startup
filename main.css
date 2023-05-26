@@ -6,7 +6,7 @@
 .slug-profile {
   height: 18rem;
   width: 18rem;
-  border-radius: 50%;
+  border-radius: 5%;
 }
 
 .container {
@@ -41,6 +41,12 @@
 #user-profile-name {
   display: flex;
   flex-direction: row;
+}
+
+#user-slug-name {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .player-name {

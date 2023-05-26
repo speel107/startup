@@ -43,11 +43,14 @@
       </div>
       <div id="slug-workshop" class="container">
         <div id="workshop-profile">
-          <h3>waffles</h3>
-          <img class="slug-profile" alt="my slug" src="./images/slug.png" />
+          <div id="user-slug-name">
+            <h5>Name:</h5>
+            <span class="slug-name"></span>
+          </div>
+          <img class="slug-profile" alt="my slug" src="./images/slug-no-back.png" />
           <form method="get">
-            <input type="text" id="name" placeholder="Edit Name Here" />
-            <button class="btn btn-info" type="submit">Change</button>
+            <input type="text" id="slug" placeholder="Edit Name Here" />
+            <button class="btn btn-info" type="submit" onclick="changeName()">Change</button>
           </form>
         </div>
         <div class="edit-buttons" id="workshop-buttons">

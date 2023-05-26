@@ -13,3 +13,12 @@ class Profile {
 }
 
 const profile = new Profile();
+
+function changeName() {
+    const nameEl = document.querySelector("#slug");
+    localStorage.setItem("slugName", nameEl.value);
+
+    const slugNameEl = document.querySelector('.slug-name');
+    slugNameEl.textContent = nameEl.value;
+}
+
