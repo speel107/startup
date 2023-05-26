@@ -38,8 +38,8 @@
     <main class="container-fluid bg-secondary text-center">
       <h2>My Slug</h2>
       <h5>User: stephanie</h5>
-      <div name="slug-workshop">
-        <div name="workshop-profile">
+      <div id="slug-workshop" class="container">
+        <div id="workshop-profile">
           <h3>waffles</h3>
           <img class="slug-profile" alt="my slug" src="./images/slug.png" />
           <form method="get">
@@ -47,7 +47,7 @@
             <button class="btn btn-info" type="submit">Change</button>
           </form>
         </div>
-        <div class="edit-buttons" name="workshop-buttons">
+        <div class="edit-buttons" id="workshop-buttons">
               <div class="cosmetic-option">
                 <button class="btn btn-info" type="submit">Previous</button>
                 <h5>Hairstyle</h5>
@@ -70,12 +70,14 @@
               </div>
         </div>
       </div>
-      <a href="friends.html">
-        <button class="btn btn-info" type="submit">My Friends</button>
-      </a>
-      <a href="connect.html">
-        <button class="btn btn-info" type="submit">Add Friends</button>
-      </a>
+      <div id="main-nav-buttons">
+         <a href="friends.html">
+          <button class="btn btn-info" type="submit">My Friends</button>
+        </a>
+        <a href="connect.html">
+          <button class="btn btn-info" type="submit">Add Friends</button>
+        </a>
+      </div>
     </main>
 
     <footer class="bg-dark text-dark text-muted">

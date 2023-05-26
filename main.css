@@ -20,6 +20,24 @@
   color: #4D6470 !important;
 }
 
+#slug-workshop {
+  width: 100%;
+  margin: auto;
+  grid-template-columns: 1fr 1fr;
+}
+
+#workshop-buttons {
+  grid-template-rows: repeat(auto-fill, minmax(75px, 1fr));
+  justify-content: space-around;
+}
+
+.cosmetic-option {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -36,6 +54,10 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+#main-nav-buttons {
+  padding: 2rem;
 }
 
 footer {
