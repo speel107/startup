@@ -79,13 +79,27 @@ class Workshop {
         document.getElementById("inside").style.filter = colorFilters[this.currFillIndex];
     }
 
-    // incrementOutline() {
-    //     // move outline val forward
-    // }
+    incrementOutline() {
+        // move outline val forward
+        if(this.currOutlineIndex < (colorFilters.length - 1)) {
+            this.currOutlineIndex++;
+        }
+        else {
+            this.currOutlineIndex = 0;
+        }
+        document.getElementById("outline").style.filter = colorFilters[this.currOutlineIndex];
+    }
 
-    // decrementOutline() {
-    //     // move outline val back
-    // }
+    decrementOutline() {
+        // move outline val back
+        if(this.currOutlineIndex > 0) {
+            this.currOutlineIndex--;
+        }
+        else {
+            this.currOutlineIndex = (colorFilters.length - 1);
+        }
+        document.getElementById("outline").style.filter = colorFilters[this.currOutlineIndex];
+    }
 }
 
 function changeName() {
