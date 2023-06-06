@@ -21,12 +21,12 @@
 
 #inside {
   /* filter: brightness(0) saturate(100%) invert(92%) sepia(23%) saturate(7148%) hue-rotate(147deg) brightness(93%) contrast(108%); */
-  filter: 0;
+  filter: "brightness(0) saturate(100%)";
 }
 
 #outline {
   /* filter: brightness(0) saturate(100%) invert(80%) sepia(18%) saturate(1715%) hue-rotate(73deg) brightness(98%) contrast(95%); */
-  filter: 0;
+  filter: "brightness(0) saturate(100%) ";
 }
 
 .container {
