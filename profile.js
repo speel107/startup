@@ -68,9 +68,16 @@ class Workshop {
         document.getElementById("inside").style.filter = colorFilters[this.currFillIndex];
     }
 
-    // decrementFill() {
-    //     // move fill val back
-    // }
+    decrementFill() {
+        // move fill val back
+        if(this.currFillIndex > 0) {
+            this.currFillIndex--;
+        }
+        else {
+            this.currFillIndex = (colorFilters.length - 1);
+        }
+        document.getElementById("inside").style.filter = colorFilters[this.currFillIndex];
+    }
 
     // incrementOutline() {
     //     // move outline val forward
