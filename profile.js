@@ -42,28 +42,27 @@ class Profile {
         playerNameEl.textContent = localStorage.getItem('username') ?? 'Mystery player';
     }
 
-    // setOutline(newVal) {
-    //     // set new outline color
-    // }
+    setOutline(newVal) {
+        // set new outline color
+        this.currentOutline = newVal;
+    }
 
-    // setFill(newVal) {
-    //     // set new fill color
-    // }
+    setFill(newVal) {
+        // set new fill color
+        this.currentFill = newVal;
+    }
 }
 
-// const profile = new Profile();
-
 class Workshop {
+    profile;
     currFillIndex;
     currOutlineIndex;
 
     constructor() {
         // declare/retreive profile
-        let profile = new Profile();
+        this.profile = new Profile();
         this.currFillIndex = 0;
         this.currOutlineIndex = 0;
-
-        // set listeners for all the buttons that adjust the profile when clicked
     }
 
     // some functions for the actual listener events
@@ -76,6 +75,7 @@ class Workshop {
             this.currFillIndex = 0;
         }
         document.getElementById("inside").style.filter = colorFilters[this.currFillIndex];
+        this.profile.setFill(colorFilters[this.currFillIndex]);
     }
 
     decrementFill() {
@@ -87,6 +87,7 @@ class Workshop {
             this.currFillIndex = (colorFilters.length - 1);
         }
         document.getElementById("inside").style.filter = colorFilters[this.currFillIndex];
+        this.profile.setFill(colorFilters[this.currFillIndex]);
     }
 
     incrementOutline() {
@@ -98,6 +99,7 @@ class Workshop {
             this.currOutlineIndex = 0;
         }
         document.getElementById("outline").style.filter = colorFilters[this.currOutlineIndex];
+        this.profile.setOutline(colorFilters[this.currOutlineIndex]);
     }
 
     decrementOutline() {
@@ -109,6 +111,7 @@ class Workshop {
             this.currOutlineIndex = (colorFilters.length - 1);
         }
         document.getElementById("outline").style.filter = colorFilters[this.currOutlineIndex];
+        this.profile.setOutline(colorFilters[this.currOutlineIndex]);
     }
 }
 
