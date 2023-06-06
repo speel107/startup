@@ -13,14 +13,24 @@ let currentFill = 0;
 let currentOutline = 0;
 
 class Profile {
+    username;
+    password;
+    slugName;
     currentFill;
     currentOutline;
+    connections; // this is probably an array of usernames
 
     constructor() {
         // set player username at the top of the screen 
         this.setPlayerName();
         this.currentFill = 0;
         this.currentOutline = 0;
+
+        // store player data
+        this.username = localStorage.getItem('username');
+        this.password = localStorage.getItem('password');
+
+        
 
         // fill page with current profile data
 
@@ -103,7 +113,7 @@ class Workshop {
 }
 
 function changeName() {
-    const nameEl = document.querySelector("#slug");
+    const nameEl = document.querySelector("slug");
     localStorage.setItem("slugName", nameEl.value);
 
     const slugNameEl = document.querySelector('.slug-name');
