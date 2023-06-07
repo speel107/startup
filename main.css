@@ -65,6 +65,7 @@
 #workshop-buttons {
   grid-template-rows: repeat(auto-fill, minmax(75px, 1fr));
   justify-content: space-around;
+  align-items: space-between;
 }
 
 .cosmetic-option {

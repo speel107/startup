@@ -18,7 +18,6 @@ class Profile {
     slugName;
     currentFill;
     currentOutline;
-    connections; // this is probably an array of usernames
 
     constructor() {
         // set player username at the top of the screen 
