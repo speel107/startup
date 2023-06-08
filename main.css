@@ -90,6 +90,10 @@
   padding: 0 1rem;
 }
 
+.slug-name {
+  padding: 0 1rem;
+}
+
 body {
   display: flex;
   flex-direction: column;

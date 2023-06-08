@@ -9,6 +9,12 @@ class ConnectionPotentials {
         playerNameEl.textContent = localStorage.getItem('username') ?? 'Mystery player';
     }
 
+    addFriend(creator) {
+        let friends = JSON.parse(localStorage.getItem("friends")) || [];
+        friends.push(creator);
+        localStorage.setItem("friends", JSON.stringify(friends));
+    }
+
     renderCards() {
         // Retrieve the array of objects from local storage
         let slugs = JSON.parse(localStorage.getItem("slugs")) || [];
@@ -53,12 +59,15 @@ class ConnectionPotentials {
                 connections.textContent = "Connections: " + slug.connections;
                 cardBody.appendChild(connections);
 
-                // Create the remove friend button
-                let removeBtn = document.createElement("a");
-                removeBtn.href = "#";
-                removeBtn.className = "btn btn-info";
-                removeBtn.textContent = "Add Friend";
-                cardBody.appendChild(removeBtn);
+                // Create the add friend button
+                let addBtn = document.createElement("a");
+                addBtn.href = "#";
+                addBtn.className = "btn btn-info";
+                addBtn.textContent = "Add Friend";
+                addBtn.onclick = function() {
+                    this.addFriend(slug.creator);
+                }
+                cardBody.appendChild(addBtn);
 
                 // Append the card body to the card
                 card.appendChild(cardBody);
