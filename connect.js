@@ -70,4 +70,4 @@ class ConnectionPotentials {
     }
 }
 
-let friends = new ConnectionPotentials();
+let connections = new ConnectionPotentials();
