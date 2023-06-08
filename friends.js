@@ -26,10 +26,10 @@ class FriendsList {
         for (let i = 0; i < slugs.length; i++) {
             let slug = slugs[i];
             if(friends.includes(slug.creator)) {
-                
                 // Create the card element
                 let card = document.createElement("div");
                 card.className = "card";
+                card.id = slug.creator;
                 card.style = "width: 15rem;";
 
                 // Create the card image
@@ -73,6 +73,10 @@ class FriendsList {
                         friends.splice(index, 1);
                     }
                     localStorage.setItem("friends", JSON.stringify(friends));
+                    let card = document.getElementById(slug.creator);
+                    if (card) {
+                        card.remove();
+                    }
                 }
                 cardBody.appendChild(removeBtn);
 

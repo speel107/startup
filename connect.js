@@ -22,6 +22,7 @@ class ConnectionPotentials {
                 // Create the card element
                 let card = document.createElement("div");
                 card.className = "card";
+                card.id = slug.creator;
                 card.style = "width: 15rem;";
 
                 // Create the card image
@@ -62,6 +63,10 @@ class ConnectionPotentials {
                     let friends = JSON.parse(localStorage.getItem("friends")) || [];
                     friends.push(slug.creator);
                     localStorage.setItem("friends", JSON.stringify(friends));
+                    let card = document.getElementById(slug.creator);
+                    if (card) {
+                        card.remove();
+                    }
                 }
                 cardBody.appendChild(addBtn);
 
