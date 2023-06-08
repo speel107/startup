@@ -7,8 +7,8 @@ class FriendsList {
     }
 
     setSlugName() {
-        const slugNameEl = document.querySelector('.slugs-name');
-        slugNameEl.textContent = localStorage.getItem('slugName') ?? 'Mystery slug';
+        const slugNameEl = document.querySelector('.slug-name-header');
+        slugNameEl.textContent = localStorage.getItem('slugname') ?? 'Mystery slug';
     }
 
     setPlayerName() {
