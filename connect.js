@@ -9,12 +9,6 @@ class ConnectionPotentials {
         playerNameEl.textContent = localStorage.getItem('username') ?? 'Mystery player';
     }
 
-    addFriend(creator) {
-        let friends = JSON.parse(localStorage.getItem("friends")) || [];
-        friends.push(creator);
-        localStorage.setItem("friends", JSON.stringify(friends));
-    }
-
     renderCards() {
         // Retrieve the array of objects from local storage
         let slugs = JSON.parse(localStorage.getItem("slugs")) || [];
@@ -24,7 +18,7 @@ class ConnectionPotentials {
         // Iterate over the friends array and create a card for each object
         for (let i = 0; i < slugs.length; i++) {
             let slug = slugs[i];
-            if(!friends.includes(slugs.creator)) {
+            if(!friends.includes(slug.creator)) {
                 // Create the card element
                 let card = document.createElement("div");
                 card.className = "card";
@@ -65,7 +59,9 @@ class ConnectionPotentials {
                 addBtn.className = "btn btn-info";
                 addBtn.textContent = "Add Friend";
                 addBtn.onclick = function() {
-                    this.addFriend(slug.creator);
+                    let friends = JSON.parse(localStorage.getItem("friends")) || [];
+                    friends.push(slug.creator);
+                    localStorage.setItem("friends", JSON.stringify(friends));
                 }
                 cardBody.appendChild(addBtn);
 

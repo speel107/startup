@@ -25,7 +25,8 @@ class FriendsList {
         // Iterate over the friends array and create a card for each object
         for (let i = 0; i < slugs.length; i++) {
             let slug = slugs[i];
-            if(friends.includes(slugs.creator)) {
+            if(friends.includes(slug.creator)) {
+                
                 // Create the card element
                 let card = document.createElement("div");
                 card.className = "card";
@@ -65,6 +66,14 @@ class FriendsList {
                 removeBtn.href = "#";
                 removeBtn.className = "btn btn-info";
                 removeBtn.textContent = "Remove Friend";
+                removeBtn.onclick = function() {
+                    let friends = JSON.parse(localStorage.getItem("friends")) || [];
+                    var index = friends.indexOf(slug.creator);
+                    if (index !== -1) {
+                        friends.splice(index, 1);
+                    }
+                    localStorage.setItem("friends", JSON.stringify(friends));
+                }
                 cardBody.appendChild(removeBtn);
 
                 // Append the card body to the card
