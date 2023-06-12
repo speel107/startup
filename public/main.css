@@ -140,6 +140,20 @@ menu .nav-item {
   padding: 0 0.3em;
 }
 
+.quote-box {
+  margin-top: 1em;
+  padding: 0.5em;
+  border-radius: 5px;
+}
+
+.quote {
+  font-style: italic;
+}
+
+.author::before {
+  content: " - ";
+}
+
 footer a {
   float: right;
 }

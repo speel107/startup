@@ -11,18 +11,25 @@ app.use(express.json());
 app.use(express.static('public'));
 
 // Router for service endpoints
-const apiRouter = express.Router();
+let apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
-// GetScores TODO: change this
-apiRouter.get('/scores', (_req, res) => {
-  res.send(scores);
+// Get all users
+apiRouter.get('/users', (_req, res) => {
+  res.send(users);
 });
 
-// SubmitScore TODO: change this
-apiRouter.post('/score', (req, res) => {
-  scores = updateScores(req.body, scores);
-  res.send(scores);
+// // Get single user
+// apiRouter.get('/users/userID', (_req, res) => {
+//   // TODO: this line is incorrect
+//   res.send(users);
+// });
+
+// Get user info
+apiRouter.post('/update/user', (req, res) => {
+  // TODO: put something else here
+  users = updateUsers(req.body, users);
+  res.send(users);
 });
 
 // Return the application's default page if the path is unknown
@@ -33,3 +40,20 @@ app.use((_req, res) => {
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+// additional functions for calculating things?
+let users = [];
+function updateUsers(newUser, users) {
+  let found = false;
+  for (const [i, prevUser] of users.entries()) {
+    if (newUser.username === prevUser.username) {
+      prevUser = {...prevUser, ...newUser};
+    }
+  }
+
+  if (!found) {
+    users.push(newUser);
+  }
+
+  return users;
+}
