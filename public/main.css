@@ -20,12 +20,10 @@
 }
 
 #inside {
-  /* filter: brightness(0) saturate(100%) invert(92%) sepia(23%) saturate(7148%) hue-rotate(147deg) brightness(93%) contrast(108%); */
   filter: "brightness(0) saturate(100%)";
 }
 
 #outline {
-  /* filter: brightness(0) saturate(100%) invert(80%) sepia(18%) saturate(1715%) hue-rotate(73deg) brightness(98%) contrast(95%); */
   filter: "brightness(0) saturate(100%) ";
 }
 
@@ -90,6 +88,16 @@
   padding: 0 1rem;
 }
 
+.slug-name {
+  padding: 0 1rem;
+}
+
+.slug-name-header {
+  font-family: Arial, sans-serif;
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -130,6 +138,20 @@ menu {
 
 menu .nav-item {
   padding: 0 0.3em;
+}
+
+.quote-box {
+  margin-top: 1em;
+  padding: 0.5em;
+  border-radius: 5px;
+}
+
+.quote {
+  font-style: italic;
+}
+
+.author::before {
+  content: " - ";
 }
 
 footer a {

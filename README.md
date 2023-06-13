@@ -16,11 +16,12 @@ Have you ever wanted a pet, but your apartment said no? Have you ever had a pet 
 ### CSS
 - [x] Images included for the slug
 - [x] Consistent page font/color scheme
-- [ ] Image styling for the slug
+- [x] Image styling for the slug
 - [x] Responsive to alternate sizing (mobile/laptop)
 ### JavaScript
-- [ ] Navigation between pages using buttons
-- [ ] Database keeps all slugs updated
+- [x] Navigation between pages using buttons
+- [x] Slug data for the user persists
+- [x] Friends and potential connections update live
 ### Service
 - [ ] HTTP service to host frontend
 - [ ] Call to third party endpoints (images)

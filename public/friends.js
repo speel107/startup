@@ -1,7 +1,14 @@
-class ConnectionPotentials {
+class FriendsList {
     constructor() {
+        this.setSlugName();
         this.setPlayerName();
+
         this.renderCards();
+    }
+
+    setSlugName() {
+        const slugNameEl = document.querySelector('.slug-name-header');
+        slugNameEl.textContent = localStorage.getItem('slugname') ?? 'Mystery slug';
     }
 
     setPlayerName() {
@@ -18,10 +25,11 @@ class ConnectionPotentials {
         // Iterate over the friends array and create a card for each object
         for (let i = 0; i < slugs.length; i++) {
             let slug = slugs[i];
-            if(!friends.includes(slugs.creator)) {
+            if(friends.includes(slug.creator)) {
                 // Create the card element
                 let card = document.createElement("div");
                 card.className = "card";
+                card.id = slug.creator;
                 card.style = "width: 15rem;";
 
                 // Create the card image
@@ -57,7 +65,19 @@ class ConnectionPotentials {
                 let removeBtn = document.createElement("a");
                 removeBtn.href = "#";
                 removeBtn.className = "btn btn-info";
-                removeBtn.textContent = "Add Friend";
+                removeBtn.textContent = "Remove Friend";
+                removeBtn.onclick = function() {
+                    let friends = JSON.parse(localStorage.getItem("friends")) || [];
+                    var index = friends.indexOf(slug.creator);
+                    if (index !== -1) {
+                        friends.splice(index, 1);
+                    }
+                    localStorage.setItem("friends", JSON.stringify(friends));
+                    let card = document.getElementById(slug.creator);
+                    if (card) {
+                        card.remove();
+                    }
+                }
                 cardBody.appendChild(removeBtn);
 
                 // Append the card body to the card
@@ -70,4 +90,4 @@ class ConnectionPotentials {
     }
 }
 
-let friends = new ConnectionPotentials();
+let friends = new FriendsList();

@@ -1,14 +1,7 @@
-class FriendsList {
+class ConnectionPotentials {
     constructor() {
-        this.setSlugName();
         this.setPlayerName();
-
         this.renderCards();
-    }
-
-    setSlugName() {
-        const slugNameEl = document.querySelector('.slugs-name');
-        slugNameEl.textContent = localStorage.getItem('slugName') ?? 'Mystery slug';
     }
 
     setPlayerName() {
@@ -25,10 +18,11 @@ class FriendsList {
         // Iterate over the friends array and create a card for each object
         for (let i = 0; i < slugs.length; i++) {
             let slug = slugs[i];
-            if(friends.includes(slugs.creator)) {
+            if(!friends.includes(slug.creator)) {
                 // Create the card element
                 let card = document.createElement("div");
                 card.className = "card";
+                card.id = slug.creator;
                 card.style = "width: 15rem;";
 
                 // Create the card image
@@ -60,12 +54,21 @@ class FriendsList {
                 connections.textContent = "Connections: " + slug.connections;
                 cardBody.appendChild(connections);
 
-                // Create the remove friend button
-                let removeBtn = document.createElement("a");
-                removeBtn.href = "#";
-                removeBtn.className = "btn btn-info";
-                removeBtn.textContent = "Remove Friend";
-                cardBody.appendChild(removeBtn);
+                // Create the add friend button
+                let addBtn = document.createElement("a");
+                addBtn.href = "#";
+                addBtn.className = "btn btn-info";
+                addBtn.textContent = "Add Friend";
+                addBtn.onclick = function() {
+                    let friends = JSON.parse(localStorage.getItem("friends")) || [];
+                    friends.push(slug.creator);
+                    localStorage.setItem("friends", JSON.stringify(friends));
+                    let card = document.getElementById(slug.creator);
+                    if (card) {
+                        card.remove();
+                    }
+                }
+                cardBody.appendChild(addBtn);
 
                 // Append the card body to the card
                 card.appendChild(cardBody);
@@ -77,4 +80,4 @@ class FriendsList {
     }
 }
 
-let friends = new FriendsList();
+let connections = new ConnectionPotentials();
