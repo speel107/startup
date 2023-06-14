@@ -53,6 +53,49 @@ class Profile {
         localStorage.setItem("slugfill", newVal);
         localStorage.setItem("slugfill", newVal);
     }
+
+    async saveSlug() {
+        let newFriends = JSON.parse(localStorage.getItem("friends")) || [];
+        const newUser = {username: this.username, password: this.password, slug: this.slugName, 
+            fill: this.currentFill, outline: this.currentOutline, friends: newFriends};
+    
+        try {
+          const response = await fetch('/api/update', {
+            method: 'POST',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify(newUser),
+          });
+    
+          // Store what the service gave us as the slugs
+          const slugs = await response.json();
+          localStorage.setItem('slugs', JSON.stringify(slugs));
+          console.log("got to the saving point");
+        } catch {
+          // If there was an error then just track slugs locally
+          this.updateSlugsLocal(newUser);
+        }
+    }
+
+    updateSlugsLocal(newSlug) {
+        let slugs = [];
+        const slugsText = localStorage.getItem('slugs');
+        if (slugsText) {
+          slugs = JSON.parse(slugsText);
+        }
+    
+        let found = false;
+        for (const [i, prevSlug] of slugs.entries()) {
+            if (newSlug.username === prevSlug.username) {
+              prevSlug = {...prevSlug, ...newSlug};
+            }
+        }
+    
+        if (!found) {
+            slugs.push(newSlug);
+        }
+    
+        localStorage.setItem('slugs', JSON.stringify(slugs));
+    }
 }
 
 class Workshop {
@@ -139,6 +182,10 @@ class Workshop {
         }
         document.getElementById("outline").style.filter = colorFilters[this.currOutlineIndex];
         this.profile.setOutline(colorFilters[this.currOutlineIndex]);
+    }
+
+    async leavePage() {
+        this.profile.saveSlug();
     }
 }
 
