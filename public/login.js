@@ -27,7 +27,12 @@ function login() {
       localStorage.setItem("slugname", retrievedSlug.slugname);
       localStorage.setItem("slugfill", retrievedSlug.fill);
       localStorage.setItem("slugoutline", retrievedSlug.outline);
-      localStorage.setItem("friends", retrievedSlug.friends);
+      if(retrievedSlug.friends === []) {
+        localStorage.setItem("friends", JSON.stringify([]));
+      }
+      else {
+        localStorage.setItem("friends", JSON.stringify(retrievedSlug.friends));
+      }
     }
 
     window.location.href = "profile.html";
@@ -42,7 +47,7 @@ function clearUser() {
 }
 
 async function saveSlugsToLocalStorage() {
-  // localStorage.setItem("slugs", JSON.stringify(slugs));
+  
   let slugs = [];
   try {
     // Get the latest high scores from the service

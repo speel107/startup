@@ -28,6 +28,9 @@ class Profile {
         // store player data
         this.username = localStorage.getItem('username');
         this.password = localStorage.getItem('password');
+        this.slugname = localStorage.getItem('slugname');
+        this.currentFill = localStorage.getItem('fill');
+        this.currentOutline = localStorage.getItem('outline');
     }
 
     setPlayerName() {
@@ -56,6 +59,8 @@ class Profile {
 
     async saveSlug() {
         let newFriends = JSON.parse(localStorage.getItem("friends")) || [];
+        console.log(this.slugname);
+        console.log(newFriends);
         const newUser = {username: this.username, password: this.password, slugname: this.slugname, 
             fill: this.currentFill, outline: this.currentOutline, friends: newFriends};
     
