@@ -83,7 +83,7 @@ class Profile {
         }
     
         let found = false;
-        for ([i, prevSlug] of slugs.entries()) {
+        for (var [i, prevSlug] of slugs.entries()) {
             if (newSlug.username === prevSlug.username) {
               prevSlug = {...prevSlug, ...newSlug};
             }

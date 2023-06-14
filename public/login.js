@@ -6,6 +6,14 @@ function login() {
     window.location.href = "profile.html";
 }
 
+function clearUser() {
+  localStorage.setItem("username", "");
+  localStorage.setItem("password", "");
+  localStorage.setItem("slugname", "");
+  localStorage.setItem("slugfill", "");
+  localStorage.setItem("slugoutline", "");
+}
+
 // Add people to localstorage
 // Define an array of objects
 var oldSlugs = [
@@ -79,6 +87,7 @@ function displayQuote(data) {
     });
 }
 
+clearUser();
 displayQuote();
 saveSlugsToLocalStorage();
 let friends = [];

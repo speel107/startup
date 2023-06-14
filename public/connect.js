@@ -1,4 +1,6 @@
 class ConnectionPotentials {
+    currentPlayer;
+
     constructor() {
         this.setPlayerName();
         this.renderCards();
@@ -7,6 +9,7 @@ class ConnectionPotentials {
     setPlayerName() {
         const playerNameEl = document.querySelector('.player-name');
         playerNameEl.textContent = localStorage.getItem('username') ?? 'Mystery player';
+        this.currentPlayer = localStorage.getItem('username') ?? 'Mystery player';
     }
 
     renderCards() {
@@ -18,7 +21,7 @@ class ConnectionPotentials {
         // Iterate over the friends array and create a card for each object
         for (let i = 0; i < slugs.length; i++) {
             let slug = slugs[i];
-            if(!friends.includes(slug.creator)) {
+            if(!friends.includes(slug.username) && (slug.username !== this.currentPlayer)) {
                 // Create the card element
                 let card = document.createElement("div");
                 card.className = "card";
@@ -26,12 +29,6 @@ class ConnectionPotentials {
                 card.style = "width: 15rem;";
 
                 // Create the card image
-                // let image = document.createElement("img");
-                // image.className = "card-img-top";
-                // image.alt = "my slug";
-                // image.src = slug.image;
-                // card.appendChild(image);
-
                 var imgContainer = document.createElement("div");
                 imgContainer.classList.add("img-container-small");
 

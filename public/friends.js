@@ -33,11 +33,29 @@ class FriendsList {
                 card.style = "width: 15rem;";
 
                 // Create the card image
-                let image = document.createElement("img");
-                image.className = "card-img-top";
-                image.alt = "my slug";
-                image.src = slug.image;
-                card.appendChild(image);
+                var imgContainer = document.createElement("div");
+                imgContainer.classList.add("img-container-small");
+
+                var insideImage = document.createElement("img");
+                insideImage.classList.add("slug-profile");
+                insideImage.id = "inside";
+                insideImage.alt = "my inside slug";
+                insideImage.src = "./images/slug-inside-white.png";
+                insideImage.style.objectFit = "contain";
+                insideImage.style.filter = slug.fill;
+                imgContainer.appendChild(insideImage);
+
+                var outlineImage = document.createElement("img");
+                outlineImage.classList.add("slug-profile");
+                outlineImage.id = "outline";
+                outlineImage.alt = "my outline slug";
+                outlineImage.src = "./images/slug-outline-white.png";
+                outlineImage.style.objectFit = "contain";
+                outlineImage.style.filter = slug.outline;
+                imgContainer.appendChild(outlineImage);
+
+                card.appendChild(imgContainer);
+
 
                 // Create the card body
                 let cardBody = document.createElement("div");
