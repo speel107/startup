@@ -9,6 +9,12 @@
   width: 18rem;
 }
 
+.img-container-small {
+  position: relative;
+  height: 15rem;
+  width: 15rem;
+}
+
 .slug-profile {
   position: absolute;
   left: 0;

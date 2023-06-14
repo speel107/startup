@@ -25,11 +25,11 @@ class FriendsList {
         // Iterate over the friends array and create a card for each object
         for (let i = 0; i < slugs.length; i++) {
             let slug = slugs[i];
-            if(friends.includes(slug.creator)) {
+            if(friends.includes(slug.username)) {
                 // Create the card element
                 let card = document.createElement("div");
                 card.className = "card";
-                card.id = slug.creator;
+                card.id = slug.username;
                 card.style = "width: 15rem;";
 
                 // Create the card image
@@ -46,19 +46,19 @@ class FriendsList {
                 // Create the card title
                 let title = document.createElement("h5");
                 title.className = "card-title";
-                title.textContent = slug.name;
+                title.textContent = slug.slug;
                 cardBody.appendChild(title);
 
                 // Create the creator paragraph
                 let creator = document.createElement("p");
                 creator.className = "card-text";
-                creator.textContent = "Creator: " + slug.creator;
+                creator.textContent = "Creator: " + slug.username;
                 cardBody.appendChild(creator);
 
                 // Create the connections paragraph
                 let connections = document.createElement("p");
                 connections.className = "card-text";
-                connections.textContent = "Connections: " + slug.connections;
+                connections.textContent = "Connections: " + slug.friends.length;
                 cardBody.appendChild(connections);
 
                 // Create the remove friend button
@@ -68,12 +68,12 @@ class FriendsList {
                 removeBtn.textContent = "Remove Friend";
                 removeBtn.onclick = function() {
                     let friends = JSON.parse(localStorage.getItem("friends")) || [];
-                    var index = friends.indexOf(slug.creator);
+                    var index = friends.indexOf(slug.username);
                     if (index !== -1) {
                         friends.splice(index, 1);
                     }
                     localStorage.setItem("friends", JSON.stringify(friends));
-                    let card = document.getElementById(slug.creator);
+                    let card = document.getElementById(slug.username);
                     if (card) {
                         card.remove();
                     }

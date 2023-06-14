@@ -28,17 +28,16 @@ class Profile {
         // store player data
         this.username = localStorage.getItem('username');
         this.password = localStorage.getItem('password');
-
-        
-
-        // fill page with current profile data
-
-        // something else probably
     }
 
     setPlayerName() {
         const playerNameEl = document.querySelector('.player-name');
         playerNameEl.textContent = localStorage.getItem('username') ?? 'Mystery player';
+    }
+
+    setSlugName(newVal) {
+        this.slugName = newVal;
+        localStorage.setItem("slugname", newVal);
     }
 
     setOutline(newVal) {
@@ -84,7 +83,7 @@ class Profile {
         }
     
         let found = false;
-        for (const [i, prevSlug] of slugs.entries()) {
+        for ([i, prevSlug] of slugs.entries()) {
             if (newSlug.username === prevSlug.username) {
               prevSlug = {...prevSlug, ...newSlug};
             }

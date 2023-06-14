@@ -22,15 +22,38 @@ class ConnectionPotentials {
                 // Create the card element
                 let card = document.createElement("div");
                 card.className = "card";
-                card.id = slug.creator;
+                card.id = slug.username;
                 card.style = "width: 15rem;";
 
                 // Create the card image
-                let image = document.createElement("img");
-                image.className = "card-img-top";
-                image.alt = "my slug";
-                image.src = slug.image;
-                card.appendChild(image);
+                // let image = document.createElement("img");
+                // image.className = "card-img-top";
+                // image.alt = "my slug";
+                // image.src = slug.image;
+                // card.appendChild(image);
+
+                var imgContainer = document.createElement("div");
+                imgContainer.classList.add("img-container-small");
+
+                var insideImage = document.createElement("img");
+                insideImage.classList.add("slug-profile");
+                insideImage.id = "inside";
+                insideImage.alt = "my inside slug";
+                insideImage.src = "./images/slug-inside-white.png";
+                insideImage.style.objectFit = "contain";
+                insideImage.style.filter = slug.fill;
+                imgContainer.appendChild(insideImage);
+
+                var outlineImage = document.createElement("img");
+                outlineImage.classList.add("slug-profile");
+                outlineImage.id = "outline";
+                outlineImage.alt = "my outline slug";
+                outlineImage.src = "./images/slug-outline-white.png";
+                outlineImage.style.objectFit = "contain";
+                outlineImage.style.filter = slug.outline;
+                imgContainer.appendChild(outlineImage);
+
+                card.appendChild(imgContainer);
 
                 // Create the card body
                 let cardBody = document.createElement("div");
@@ -39,19 +62,19 @@ class ConnectionPotentials {
                 // Create the card title
                 let title = document.createElement("h5");
                 title.className = "card-title";
-                title.textContent = slug.name;
+                title.textContent = slug.slug;
                 cardBody.appendChild(title);
 
                 // Create the creator paragraph
                 let creator = document.createElement("p");
                 creator.className = "card-text";
-                creator.textContent = "Creator: " + slug.creator;
+                creator.textContent = "Creator: " + slug.username;
                 cardBody.appendChild(creator);
 
                 // Create the connections paragraph
                 let connections = document.createElement("p");
                 connections.className = "card-text";
-                connections.textContent = "Connections: " + slug.connections;
+                connections.textContent = "Connections: " + slug.friends.length;
                 cardBody.appendChild(connections);
 
                 // Create the add friend button
@@ -61,9 +84,9 @@ class ConnectionPotentials {
                 addBtn.textContent = "Add Friend";
                 addBtn.onclick = function() {
                     let friends = JSON.parse(localStorage.getItem("friends")) || [];
-                    friends.push(slug.creator);
+                    friends.push(slug.username);
                     localStorage.setItem("friends", JSON.stringify(friends));
-                    let card = document.getElementById(slug.creator);
+                    let card = document.getElementById(slug.username);
                     if (card) {
                         card.remove();
                     }
