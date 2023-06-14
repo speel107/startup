@@ -15,7 +15,7 @@ let currentOutline = 0;
 class Profile {
     username;
     password;
-    slugName;
+    slugname;
     currentFill;
     currentOutline;
 
@@ -36,8 +36,9 @@ class Profile {
     }
 
     setSlugName(newVal) {
-        this.slugName = newVal;
+        this.slugname = newVal;
         localStorage.setItem("slugname", newVal);
+        console.log(this.slugname);
     }
 
     setOutline(newVal) {
@@ -55,7 +56,7 @@ class Profile {
 
     async saveSlug() {
         let newFriends = JSON.parse(localStorage.getItem("friends")) || [];
-        const newUser = {username: this.username, password: this.password, slugname: this.slugName, 
+        const newUser = {username: this.username, password: this.password, slugname: this.slugname, 
             fill: this.currentFill, outline: this.currentOutline, friends: newFriends};
     
         try {
@@ -64,8 +65,6 @@ class Profile {
             headers: {'content-type': 'application/json'},
             body: JSON.stringify(newUser),
           });
-          console.log(newUser);
-          console.log(response);
           
           // Store what the service gave us as the slugs
           const slugs = await response.json();
@@ -87,6 +86,7 @@ class Profile {
         for (var [i, prevSlug] of slugs.entries()) {
             if (newSlug.username === prevSlug.username) {
               prevSlug = {...prevSlug, ...newSlug};
+              found = true;
             }
         }
     

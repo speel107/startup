@@ -3,6 +3,33 @@ function login() {
     const passwordEl = document.querySelector("#password");
     localStorage.setItem("username", nameEl.value);
     localStorage.setItem("password", passwordEl.value);
+    
+    let username = nameEl.value;
+    let retrievedSlug = null;
+
+    let slugs = [];
+    const slugsText = localStorage.getItem('slugs');
+    if (slugsText) {
+        slugs = JSON.parse(slugsText);
+    }
+    
+    let found = false;
+    for (var [i, prevSlug] of slugs.entries()) {
+        if (username === prevSlug.username) {
+          retrievedSlug = prevSlug;
+          found = true;
+        }
+    }
+    
+    if (found) {
+      localStorage.setItem("username", retrievedSlug.username);
+      localStorage.setItem("password", retrievedSlug.password);
+      localStorage.setItem("slugname", retrievedSlug.slugname);
+      localStorage.setItem("slugfill", retrievedSlug.fill);
+      localStorage.setItem("slugoutline", retrievedSlug.outline);
+      localStorage.setItem("friends", retrievedSlug.friends);
+    }
+
     window.location.href = "profile.html";
 }
 
@@ -30,6 +57,8 @@ async function saveSlugsToLocalStorage() {
     if (slugText) {
       slugs = JSON.parse(slugText);
     }
+
+    clearUser();
   }
 }
 
@@ -52,7 +81,6 @@ function displayQuote(data) {
     });
 }
 
-clearUser();
 displayQuote();
 saveSlugsToLocalStorage();
 let friends = [];

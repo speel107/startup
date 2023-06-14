@@ -27,10 +27,9 @@ apiRouter.get('/users', (_req, res) => {
 
 // Update user info
 apiRouter.post('/update', (req, res) => {
-  console.log("updating users...");
+  //console.log("updating users...");
   users = updateUsers(req.body, users);
   res.send(users);
-  console.log(users);
 });
 
 // Return the application's default page if the path is unknown
@@ -49,6 +48,7 @@ function updateUsers(newUser, users) {
   for (let [i, prevUser] of users.entries()) {
     if (newUser.username === prevUser.username) {
       prevUser = {...prevUser, ...newUser};
+      found = true;
     }
   }
 
