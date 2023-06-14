@@ -14,41 +14,6 @@ function clearUser() {
   localStorage.setItem("slugoutline", "");
 }
 
-// Add people to localstorage
-// Define an array of objects
-var oldSlugs = [
-  {
-    name: "Fred",
-    creator: "mike",
-    connections: 20,
-    image: "./images/doomslug-md.png"
-  },
-  {
-    name: "Billy-Bob",
-    creator: "Nate",
-    connections: 17,
-    image: "./images/doomslug-md.png"
-  },
-  {
-    name: "Boomslug",
-    creator: "Jorgen",
-    connections: 8,
-    image: "./images/doomslug-md.png"
-  },
-  {
-    name: "Fine",
-    creator: "Rig",
-    connections: 13,
-    image: "./images/doomslug-md.png"
-  },
-  {
-    name: "Doomslug",
-    creator: "spensa",
-    connections: 10,
-    image: "./images/doomslug-md.png"
-  }
-];
-
 async function saveSlugsToLocalStorage() {
   // localStorage.setItem("slugs", JSON.stringify(slugs));
   let slugs = [];

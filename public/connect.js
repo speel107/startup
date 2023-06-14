@@ -59,7 +59,7 @@ class ConnectionPotentials {
                 // Create the card title
                 let title = document.createElement("h5");
                 title.className = "card-title";
-                title.textContent = slug.slug;
+                title.textContent = slug.slugname;
                 cardBody.appendChild(title);
 
                 // Create the creator paragraph

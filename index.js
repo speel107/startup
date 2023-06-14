@@ -25,11 +25,12 @@ apiRouter.get('/users', (_req, res) => {
 //   res.send(users);
 // });
 
-// Get user info
+// Update user info
 apiRouter.post('/update', (req, res) => {
-  // TODO: put something else here
+  console.log("updating users...");
   users = updateUsers(req.body, users);
   res.send(users);
+  console.log(users);
 });
 
 // Return the application's default page if the path is unknown
@@ -45,7 +46,7 @@ app.listen(port, () => {
 let users = [];
 function updateUsers(newUser, users) {
   let found = false;
-  for (const [i, prevUser] of users.entries()) {
+  for (let [i, prevUser] of users.entries()) {
     if (newUser.username === prevUser.username) {
       prevUser = {...prevUser, ...newUser};
     }

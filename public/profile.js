@@ -55,7 +55,7 @@ class Profile {
 
     async saveSlug() {
         let newFriends = JSON.parse(localStorage.getItem("friends")) || [];
-        const newUser = {username: this.username, password: this.password, slug: this.slugName, 
+        const newUser = {username: this.username, password: this.password, slugname: this.slugName, 
             fill: this.currentFill, outline: this.currentOutline, friends: newFriends};
     
         try {
@@ -64,11 +64,12 @@ class Profile {
             headers: {'content-type': 'application/json'},
             body: JSON.stringify(newUser),
           });
-    
+          console.log(newUser);
+          console.log(response);
+          
           // Store what the service gave us as the slugs
           const slugs = await response.json();
           localStorage.setItem('slugs', JSON.stringify(slugs));
-          console.log("got to the saving point");
         } catch {
           // If there was an error then just track slugs locally
           this.updateSlugsLocal(newUser);
@@ -183,6 +184,10 @@ class Workshop {
         this.profile.setOutline(colorFilters[this.currOutlineIndex]);
     }
 
+    changeName(newVal) {
+        this.profile.setSlugName(newVal);
+    }
+
     async leavePage() {
         this.profile.saveSlug();
     }
@@ -201,6 +206,7 @@ function changeName() {
 
     const slugNameEl = document.querySelector('.slug-name');
     slugNameEl.textContent = localStorage.getItem('slugname') ?? 'Mystery slug';
+    workshop.changeName(nameEl.value);
 }
 
 let workshop = new Workshop();
