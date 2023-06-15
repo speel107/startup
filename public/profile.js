@@ -41,7 +41,6 @@ class Profile {
     setSlugName(newVal) {
         this.slugname = newVal;
         localStorage.setItem("slugname", newVal);
-        console.log(this.slugname);
     }
 
     setOutline(newVal) {
@@ -59,8 +58,6 @@ class Profile {
 
     async saveSlug() {
         let newFriends = JSON.parse(localStorage.getItem("friends")) || [];
-        console.log(this.slugname);
-        console.log(newFriends);
         const newUser = {username: this.username, password: this.password, slugname: this.slugname, 
             fill: this.currentFill, outline: this.currentOutline, friends: newFriends};
     

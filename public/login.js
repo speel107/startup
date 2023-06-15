@@ -47,7 +47,7 @@ function clearUser() {
 }
 
 async function saveSlugsToLocalStorage() {
-  
+
   let slugs = [];
   try {
     // Get the latest high scores from the service
@@ -62,8 +62,6 @@ async function saveSlugsToLocalStorage() {
     if (slugText) {
       slugs = JSON.parse(slugText);
     }
-
-    clearUser();
   }
 }
 
@@ -86,6 +84,7 @@ function displayQuote(data) {
     });
 }
 
+clearUser();
 displayQuote();
 saveSlugsToLocalStorage();
 let friends = [];

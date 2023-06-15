@@ -108,4 +108,34 @@ class FriendsList {
     }
 }
 
+async function logout() {
+    let slugs = JSON.parse(localStorage.getItem('slugs'));
+    const newFriends = JSON.parse(localStorage.getItem('friends'))
+
+    const username = localStorage.getItem('username');
+    let targetslug = slugs.find(obj => obj.username === username);
+
+    if (targetslug) {
+        targetslug.friends = newFriends;
+        console.log(slugs[2].friends);
+        localStorage.setItem('slugs', JSON.stringify(slugs));
+    }
+
+    try {
+        const response = await fetch('/api/update', {
+          method: 'POST',
+          headers: {'content-type': 'application/json'},
+          body: JSON.stringify(targetslug),
+        });
+        
+        // Store what the service gave us as the slugs
+        slugs = await response.json();
+        localStorage.setItem('slugs', JSON.stringify(slugs));
+    } catch {
+        // If there was an error then just track slugs locally
+        localStorage.setItem('slugs', JSON.stringify(slugs));
+        console.log("Tracking locally...");
+    }
+}
+
 let friends = new FriendsList();

@@ -100,4 +100,32 @@ class ConnectionPotentials {
     }
 }
 
+async function logout() {
+    const slugs = JSON.parse(localStorage.getItem('slugs'));
+    const newFriends = JSON.parse(localStorage.getItem('friends'))
+
+    const username = localStorage.getItem('username');
+    const targetslug = slugs.find(obj => obj.username === username);
+
+    if (targetslug) {
+        targetslug.friends = newFriends;
+        localStorage.setItem('slugs', JSON.stringify(slugs));
+    }
+
+    try {
+        const response = await fetch('/api/update', {
+          method: 'POST',
+          headers: {'content-type': 'application/json'},
+          body: JSON.stringify(targetslug),
+        });
+        
+        // Store what the service gave us as the slugs
+        slugs = await response.json();
+        localStorage.setItem('slugs', JSON.stringify(slugs));
+    } catch {
+        // If there was an error then just track slugs locally
+        console.log("Tracking locally...");
+    }
+}
+
 let connections = new ConnectionPotentials();

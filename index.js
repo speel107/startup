@@ -27,7 +27,6 @@ apiRouter.get('/users', (_req, res) => {
 
 // Update user info
 apiRouter.post('/update', (req, res) => {
-  //console.log("updating users...");
   users = updateUsers(req.body, users);
   res.send(users);
 });
