@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const DB = require('./database.js');
 
 // The service port. In production the frontend code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 4000; //changed 3000 to 4000
@@ -15,7 +16,8 @@ let apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
 // Get all users
-apiRouter.get('/users', (_req, res) => {
+apiRouter.get('/users', async (_req, res) => {
+  const users = await DB.getAllUsers();
   res.send(users);
 });
 
@@ -26,8 +28,9 @@ apiRouter.get('/users', (_req, res) => {
 // });
 
 // Update user info
-apiRouter.post('/update', (req, res) => {
-  users = updateUsers(req.body, users);
+apiRouter.post('/update', async (req, res) => {
+  DB.updateUser(req.body);
+  const users = await DB.getAllUsers();
   res.send(users);
 });
 
@@ -40,8 +43,7 @@ app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-// additional functions for calculating things?
-let users = [];
+// TAKE THIS OUT and put it in database.js (I think)
 function updateUsers(newUser, users) {
   let found = false;
   for (let [i, prevUser] of users.entries()) {

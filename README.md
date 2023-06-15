@@ -23,11 +23,11 @@ Have you ever wanted a pet, but your apartment said no? Have you ever had a pet 
 - [x] Slug data for the user persists
 - [x] Friends and potential connections update live
 ### Service
-- [ ] HTTP service to host frontend
-- [ ] Call to third party endpoints (images)
-- [ ] Access backend data
+- [x] HTTP service to host frontend
+- [x] Call to third party endpoints (quote)
+- [x] Access backend data
 ### DB
-- [ ] Create database
+- [x] Create database
 - [ ] Store/retrieve info from database
 ### Login
 - [ ] Ability to create new user
