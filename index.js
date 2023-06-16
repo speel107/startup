@@ -28,7 +28,6 @@ apiRouter.get('/user', async (req, res) => {
   console.log(user);
   res.send(user);
   console.log("response was sent");
-  //console.log(res);
 });
 
 // Update user info

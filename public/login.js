@@ -1,18 +1,19 @@
 async function getUserProfile(username) {
     console.log("entering getUserProfile");
-    console.log(username);
     let profile = null;
     try {
         // Get the latest high scores from the service
         const response = await fetch(`/api/user?username=${username}`, {
             method: 'GET'});
         profile = await response.json();
-        console.log(profile.slugname);
+        console.log(profile.friends);
+        console.log(JSON.stringify(profile.friends));
 
         // Save the scores in case we go offline in the future
         localStorage.setItem("slugname", profile.slugname);
         localStorage.setItem("slugfill", profile.fill);
         localStorage.setItem("slugoutline", profile.outline);
+        localStorage.setItem("friends", JSON.stringify(profile.friends));
         return profile;
     } catch {
         // If there was an error then just use the last saved scores

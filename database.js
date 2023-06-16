@@ -40,11 +40,15 @@ async function getSingleUser(username) {
 
 async function updateUser(user) {
     const filter = { username: user.username };
-    const update = { $set: { slugname: user.slugname, 
+    const update = { $set: { 
+        username: user.username,
+        password: user.password,
+        slugname: user.slugname, 
         fill: user.fill,
         outline: user.outline, 
-        friends: user.friends } };
-    const options = { upsert: false };
+        friends: user.friends,
+        type: user.type } };
+    const options = { upsert: true };
 
     // Update the document
     const response = users.updateOne(filter, update, options, function(err, result) {
@@ -60,31 +64,3 @@ async function updateUser(user) {
 }
 
 module.exports = { getAllUsers, getSingleUser, updateUser }
-
-// Example object:
-// {
-//     username = "spensa",
-//     password = "spin",
-//     slugname = "doomslug",
-//     fill = "brightness(0) saturate(100%) invert(89%) sepia(81%) saturate(623%) hue-rotate(343deg) brightness(103%) contrast(94%)",
-//     outline = "brightness(0) saturate(100%) invert(92%) sepia(23%) saturate(7148%) hue-rotate(147deg) brightness(93%) contrast(108%)",
-//     friends = ["rig", "jorgen"]
-// }
-
-
-// TAKE THIS OUT and put it in database.js (I think)
-// function updateUsers(newUser, users) {
-//     let found = false;
-//     for (let [i, prevUser] of users.entries()) {
-//       if (newUser.username === prevUser.username) {
-//         prevUser = {...prevUser, ...newUser};
-//         found = true;
-//       }
-//     }
-  
-//     if (!found) {
-//       users.push(newUser);
-//     }
-  
-//     return users;
-//   }
