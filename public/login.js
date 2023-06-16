@@ -1,40 +1,62 @@
+async function getUserProfile(username) {
+    let profile = null;
+    try {
+        // Get the latest high scores from the service
+        const response = await fetch(`/api/user?username=${username}`, {
+            method: 'GET'});
+        console.log("how about here??");
+        console.log(profile);
+        profile = await response.json();
+        console.log("success!");
+
+        // Save the scores in case we go offline in the future
+        localStorage.setItem("slugname", profile.slugname);
+        localStorage.setItem("slugfill", profile.fill);
+        localStorage.setItem("slugoutline", profile.outline);
+    } catch {
+        // If there was an error then just use the last saved scores
+        console.log("error retrieving profile");
+    }
+}
+
 function login() {
     const nameEl = document.querySelector("#name");
     const passwordEl = document.querySelector("#password");
     localStorage.setItem("username", nameEl.value);
     localStorage.setItem("password", passwordEl.value);
-    localStorate.setItem("type", "user");
+    localStorage.setItem("type", "user");
     
     let username = nameEl.value;
     let retrievedSlug = null;
-
-    let slugs = [];
-    const slugsText = localStorage.getItem('slugs');
-    if (slugsText) {
-        slugs = JSON.parse(slugsText);
-    }
     
-    let found = false;
-    for (var [i, prevSlug] of slugs.entries()) {
-        if (username === prevSlug.username) {
-          retrievedSlug = prevSlug;
-          found = true;
-        }
-    }
+    getUserProfile(username);
+    // let slugs = [];
+    // const slugsText = localStorage.getItem('slugs');
+    // if (slugsText) {
+    //     slugs = JSON.parse(slugsText);
+    // }
     
-    if (found) {
-      localStorage.setItem("username", retrievedSlug.username);
-      localStorage.setItem("password", retrievedSlug.password);
-      localStorage.setItem("slugname", retrievedSlug.slugname);
-      localStorage.setItem("slugfill", retrievedSlug.fill);
-      localStorage.setItem("slugoutline", retrievedSlug.outline);
-      if(retrievedSlug.friends === []) {
-        localStorage.setItem("friends", JSON.stringify([]));
-      }
-      else {
-        localStorage.setItem("friends", JSON.stringify(retrievedSlug.friends));
-      }
-    }
+    // let found = false;
+    // for (var [i, prevSlug] of slugs.entries()) {
+    //     if (username === prevSlug.username) {
+    //       retrievedSlug = prevSlug;
+    //       found = true;
+    //     }
+    // }
+    
+    // if (found) {
+    //   localStorage.setItem("username", retrievedSlug.username);
+    //   localStorage.setItem("password", retrievedSlug.password);
+    //   localStorage.setItem("slugname", retrievedSlug.slugname);
+    //   localStorage.setItem("slugfill", retrievedSlug.fill);
+    //   localStorage.setItem("slugoutline", retrievedSlug.outline);
+    //   if(retrievedSlug.friends === []) {
+    //     localStorage.setItem("friends", JSON.stringify([]));
+    //   }
+    //   else {
+    //     localStorage.setItem("friends", JSON.stringify(retrievedSlug.friends));
+    //   }
+    // }
 
     window.location.href = "profile.html";
 }

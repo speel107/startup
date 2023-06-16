@@ -22,9 +22,21 @@ function getAllUsers() {
     return cursor.toArray();
 }
 
-// function getSingleUser(username) {
-//     // retrieve single user's info
-// }
+async function getProfile(username) {
+    // retrieve single user's info
+    const query = { username: username };
+    const user = users.findOne(query);
+    return user;
+}
+
+async function getSingleUser(username) {
+    try {
+      const user = await getProfile(username);
+      return user;
+    } catch (error) {
+      console.log("Error retrieving profile:", error);
+    }
+  }
 
 async function updateUser(user) {
     const filter = { username: user.username };
@@ -47,7 +59,7 @@ async function updateUser(user) {
     return response;
 }
 
-module.exports = { getAllUsers, updateUser }
+module.exports = { getAllUsers, getSingleUser, updateUser }
 
 // Example object:
 // {

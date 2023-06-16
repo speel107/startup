@@ -21,11 +21,14 @@ apiRouter.get('/users', async (_req, res) => {
   res.send(users);
 });
 
-// // Get single user
-// apiRouter.get('/user', async (req, res) => {
-//   const user = await DB.getSingleUser(req.body);
-//   res.send(user);
-// });
+// Get single user
+apiRouter.get('/user', async (req, res) => {
+  const username = req.query.username;
+  const user = await DB.getSingleUser(username);
+  console.log(user);
+  res.send(user);
+  console.log("response was sent");
+});
 
 // Update user info
 apiRouter.post('/update', async (req, res) => {
