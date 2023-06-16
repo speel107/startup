@@ -28,7 +28,7 @@ Have you ever wanted a pet, but your apartment said no? Have you ever had a pet 
 - [x] Access backend data
 ### DB
 - [x] Create database
-- [ ] Store/retrieve info from database
+- [x] Store/retrieve info from database
 ### Login
 - [ ] Ability to create new user
 - [ ] If user exists, authenticate with username and password
