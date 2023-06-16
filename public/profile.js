@@ -59,7 +59,7 @@ class Profile {
     async saveSlug() {
         let newFriends = JSON.parse(localStorage.getItem("friends")) || [];
         const newUser = {username: this.username, password: this.password, slugname: this.slugname, 
-            fill: this.currentFill, outline: this.currentOutline, friends: newFriends};
+            fill: this.currentFill, outline: this.currentOutline, friends: newFriends, type: "user"};
     
         try {
           const response = await fetch('/api/update', {

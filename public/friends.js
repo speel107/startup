@@ -117,7 +117,6 @@ async function logout() {
 
     if (targetslug) {
         targetslug.friends = newFriends;
-        console.log(slugs[2].friends);
         localStorage.setItem('slugs', JSON.stringify(slugs));
     }
 

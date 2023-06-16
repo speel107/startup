@@ -22,9 +22,9 @@ apiRouter.get('/users', async (_req, res) => {
 });
 
 // // Get single user
-// apiRouter.get('/users/userID', (_req, res) => {
-//   // TODO: this line is incorrect
-//   res.send(users);
+// apiRouter.get('/user', async (req, res) => {
+//   const user = await DB.getSingleUser(req.body);
+//   res.send(user);
 // });
 
 // Update user info
@@ -42,20 +42,3 @@ app.use((_req, res) => {
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
-
-// TAKE THIS OUT and put it in database.js (I think)
-function updateUsers(newUser, users) {
-  let found = false;
-  for (let [i, prevUser] of users.entries()) {
-    if (newUser.username === prevUser.username) {
-      prevUser = {...prevUser, ...newUser};
-      found = true;
-    }
-  }
-
-  if (!found) {
-    users.push(newUser);
-  }
-
-  return users;
-}

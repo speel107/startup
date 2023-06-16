@@ -3,6 +3,7 @@ function login() {
     const passwordEl = document.querySelector("#password");
     localStorage.setItem("username", nameEl.value);
     localStorage.setItem("password", passwordEl.value);
+    localStorate.setItem("type", "user");
     
     let username = nameEl.value;
     let retrievedSlug = null;
