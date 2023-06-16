@@ -25,7 +25,7 @@ function getAllUsers() {
 async function getProfile(username) {
     // retrieve single user's info
     const query = { username: username };
-    const user = users.findOne(query);
+    const user = await users.findOne(query);
     return user;
 }
 
@@ -36,7 +36,7 @@ async function getSingleUser(username) {
     } catch (error) {
       console.log("Error retrieving profile:", error);
     }
-  }
+}
 
 async function updateUser(user) {
     const filter = { username: user.username };
