@@ -1,9 +1,12 @@
 const { MongoClient } = require('mongodb');
+const bcrypt = require('bcrypt');
+const uuid = require('uuid');
 const config = require('./dbConfig.json');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
 const db = client.db('startup');
+const identities = db.collection('identities');
 const users = db.collection('users');
 
 // This will asynchronously test the connection and exit the process if it fails
@@ -14,6 +17,28 @@ const users = db.collection('users');
     console.log(`Unable to connect to database with ${url} because ${ex.message}`);
     process.exit(1);
 });
+
+function getIdentity(email) {
+    return identities.findOne({ email: email });
+  }
+  
+  function getIdentityByToken(token) {
+    return identities.findOne({ token: token });
+  }
+  
+  async function createIdentitiy(email, password) {
+    // Hash the password before we insert it into the database
+    const passwordHash = await bcrypt.hash(password, 10);
+  
+    const identity = {
+      email: email,
+      password: passwordHash,
+      token: uuid.v4(),
+    };
+    await identities.insertOne(identity);
+  
+    return identity;
+  }
 
 function getAllUsers() {
     // get data for all users
@@ -63,4 +88,10 @@ async function updateUser(user) {
     return response;
 }
 
-module.exports = { getAllUsers, getSingleUser, updateUser }
+module.exports = {
+    getIdentity,
+    getIdentityByToken,
+    createIdentitiy, 
+    getAllUsers, 
+    getSingleUser, 
+    updateUser }
