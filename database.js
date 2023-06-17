@@ -26,7 +26,7 @@ function getIdentity(email) {
     return identities.findOne({ token: token });
   }
   
-  async function createIdentitiy(email, password) {
+  async function createIdentity(email, password) {
     // Hash the password before we insert it into the database
     const passwordHash = await bcrypt.hash(password, 10);
   
@@ -91,7 +91,7 @@ async function updateUser(user) {
 module.exports = {
     getIdentity,
     getIdentityByToken,
-    createIdentitiy, 
+    createIdentity, 
     getAllUsers, 
     getSingleUser, 
     updateUser }
