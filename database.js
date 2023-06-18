@@ -18,20 +18,20 @@ const users = db.collection('users');
     process.exit(1);
 });
 
-function getIdentity(email) {
-    return identities.findOne({ email: email });
+function getIdentity(username) {
+    return identities.findOne({ username: username });
   }
   
   function getIdentityByToken(token) {
     return identities.findOne({ token: token });
   }
   
-  async function createIdentity(email, password) {
+  async function createIdentity(username, password) {
     // Hash the password before we insert it into the database
     const passwordHash = await bcrypt.hash(password, 10);
   
     const identity = {
-      email: email,
+      username: username,
       password: passwordHash,
       token: uuid.v4(),
     };

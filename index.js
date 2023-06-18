@@ -27,10 +27,10 @@ app.use(`/api`, apiRouter);
 
 // CreateAuth token for a new user
 apiRouter.post('/auth/create', async (req, res) => {
-  if (await DB.getIdentity(req.body.email)) {
+  if (await DB.getIdentity(req.body.username)) {
     res.status(409).send({ msg: 'Existing user' });
   } else {
-    const identity = await DB.createIdentity(req.body.email, req.body.password);
+    const identity = await DB.createIdentity(req.body.username, req.body.password);
 
     // Set the cookie
     setAuthCookie(res, identity.token);
@@ -43,7 +43,7 @@ apiRouter.post('/auth/create', async (req, res) => {
 
 // GetAuth token for the provided credentials
 apiRouter.post('/auth/login', async (req, res) => {
-  const identity = await DB.getIdentity(req.body.email);
+  const identity = await DB.getIdentity(req.body.username);
   if (identity) {
     if (await bcrypt.compare(req.body.password, identity.password)) {
       setAuthCookie(res, identity.token);
@@ -61,11 +61,11 @@ apiRouter.delete('/auth/logout', (_req, res) => {
 });
 
 // GetUser returns information about a user
-apiRouter.get('/identity/:email', async (req, res) => {
-  const identity = await DB.getIdentity(req.params.email);
+apiRouter.get('/identity/:username', async (req, res) => {
+  const identity = await DB.getIdentity(req.params.username);
   if (identity) {
     const token = req?.cookies.token;
-    res.send({ email: identity.email, authenticated: token === identity.token });
+    res.send({ username: identity.username, authenticated: token === identity.token });
     return;
   }
   res.status(404).send({ msg: 'Unknown' });

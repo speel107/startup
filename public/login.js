@@ -2,21 +2,18 @@ async function getUserProfile(username) {
     console.log("entering getUserProfile");
     let profile = null;
     try {
-        // Get the latest high scores from the service
         const response = await fetch(`/api/user?username=${username}`, {
             method: 'GET'});
         profile = await response.json();
         console.log(profile.friends);
         console.log(JSON.stringify(profile.friends));
 
-        // Save the scores in case we go offline in the future
         localStorage.setItem("slugname", profile.slugname);
         localStorage.setItem("slugfill", profile.fill);
         localStorage.setItem("slugoutline", profile.outline);
         localStorage.setItem("friends", JSON.stringify(profile.friends));
         return profile;
     } catch {
-        // If there was an error then just use the last saved scores
         console.log("error retrieving profile");
         return null;
     }
@@ -24,12 +21,10 @@ async function getUserProfile(username) {
 
 async function login(event) {
     event.preventDefault();
-    var loginForm = document.getElementById("login-form");
-  
+
     const nameEl = document.querySelector("#name");
     const passwordEl = document.querySelector("#password");
     localStorage.setItem("username", nameEl.value);
-    localStorage.setItem("password", passwordEl.value);
     localStorage.setItem("type", "user");
     
     let username = nameEl.value;
@@ -42,7 +37,6 @@ async function login(event) {
 
 function clearUser() {
   localStorage.setItem("username", "");
-  localStorage.setItem("password", "");
   localStorage.setItem("slugname", "");
   localStorage.setItem("slugfill", "");
   localStorage.setItem("slugoutline", "");
