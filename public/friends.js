@@ -135,6 +135,16 @@ async function logout() {
         localStorage.setItem('slugs', JSON.stringify(slugs));
         console.log("Tracking locally...");
     }
+
+    localStorage.removeItem('username');
+    localStorage.removeItem('slugname');
+    localStorage.removeItem('fill');
+    localStorage.removeItem('outline');
+    localStorage.removeItem('friends');
+    localStorage.removeItem('slugs');
+    fetch(`/api/auth/logout`, {
+      method: 'delete',
+    }).then(() => (window.location.href = 'index.html'));
 }
 
 let friends = new FriendsList();

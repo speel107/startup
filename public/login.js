@@ -19,34 +19,9 @@ async function getUserProfile(username) {
     }
 }
 
-async function login(event) {
-    event.preventDefault();
-
-    const nameEl = document.querySelector("#name");
-    const passwordEl = document.querySelector("#password");
-    localStorage.setItem("username", nameEl.value);
-    localStorage.setItem("type", "user");
-    
-    let username = nameEl.value;
-    
-    let profile = await getUserProfile(username);
-    console.log(profile);
-
-    window.location.href = "profile.html";
-}
-
-function clearUser() {
-  localStorage.setItem("username", "");
-  localStorage.setItem("slugname", "");
-  localStorage.setItem("slugfill", "");
-  localStorage.setItem("slugoutline", "");
-}
-
 async function saveSlugsToLocalStorage() {
-
   let slugs = [];
   try {
-    // Get the latest high scores from the service
     const response = await fetch('/api/users');
     slugs = await response.json();
 
@@ -80,15 +55,82 @@ function displayQuote(data) {
     });
 }
 
-window.addEventListener("DOMContentLoaded", (event) => {
-    const el = document.getElementById('login-form');
-    if (el) {
-      el.addEventListener('submit', login);
-    }
-});
+(async () => {
+  const username = localStorage.getItem('username');
+  if (username) {
+    document.querySelector('#playerName').textContent = username;
+    setDisplay('loginControls', 'none');
+    setDisplay('playControls', 'block');
+  } else {
+    setDisplay('loginControls', 'block');
+    setDisplay('playControls', 'none');
+  }
+})();
 
-clearUser();
+async function loginUser() {
+  loginOrCreate(`/api/auth/login`);
+}
+
+async function createUser() {
+  loginOrCreate(`/api/auth/create`);
+}
+
+async function loginOrCreate(endpoint) {
+  const username = document.querySelector('#name')?.value;
+  const password = document.querySelector('#password')?.value;
+  const response = await fetch(endpoint, {
+    method: 'post',
+    body: JSON.stringify({ username: username, password: password }),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  });
+
+  if (response.ok) {
+    localStorage.setItem('username', username);
+    let profile = await getUserProfile(username);
+    let set = await saveSlugsToLocalStorage();
+    window.location.href = 'profile.html';
+  } else {
+    const body = await response.json();
+    const modalEl = document.querySelector('#msgModal');
+    modalEl.querySelector('.modal-body').textContent = `⚠ Error: ${body.msg}`;
+    const msgModal = new bootstrap.Modal(modalEl, {});
+    msgModal.show();
+  }
+}
+
+function play() {
+  window.location.href = 'profile.html';
+}
+
+function logout() {
+  localStorage.removeItem('username');
+  localStorage.removeItem('slugname');
+  localStorage.removeItem('fill');
+  localStorage.removeItem('outline');
+  localStorage.removeItem('friends');
+  localStorage.removeItem('slugs');
+  fetch(`/api/auth/logout`, {
+    method: 'delete',
+  }).then(() => (window.location.href = '/'));
+}
+
+async function getUser(email) {
+  // See if we have a user with the given email.
+  const response = await fetch(`/api/user/${username}`);
+  if (response.status === 200) {
+    return response.json();
+  }
+
+  return null;
+}
+
+function setDisplay(controlId, display) {
+  const playControlEl = document.querySelector(`#${controlId}`);
+  if (playControlEl) {
+    playControlEl.style.display = display;
+  }
+}
+
 displayQuote();
-saveSlugsToLocalStorage();
-let friends = [];
-localStorage.setItem("friends", JSON.stringify(friends));

@@ -126,6 +126,16 @@ async function logout() {
         // If there was an error then just track slugs locally
         console.log("Tracking locally...");
     }
+
+    localStorage.removeItem('username');
+    localStorage.removeItem('slugname');
+    localStorage.removeItem('fill');
+    localStorage.removeItem('outline');
+    localStorage.removeItem('friends');
+    localStorage.removeItem('slugs');
+    fetch(`/api/auth/logout`, {
+      method: 'delete',
+    }).then(() => (window.location.href = 'index.html'));
 }
 
 let connections = new ConnectionPotentials();

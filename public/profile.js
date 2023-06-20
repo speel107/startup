@@ -188,10 +188,23 @@ class Workshop {
         this.profile.setSlugName(newVal);
     }
 
-    async leavePage() {
+    async leavePage() {  
         this.profile.saveSlug();
     }
 }
+
+function logout() {
+    workshop.leavePage();
+    localStorage.removeItem('username');
+    localStorage.removeItem('slugname');
+    localStorage.removeItem('fill');
+    localStorage.removeItem('outline');
+    localStorage.removeItem('friends');
+    localStorage.removeItem('slugs');
+    fetch(`/api/auth/logout`, {
+      method: 'delete',
+    }).then(() => (window.location.href = '/'));
+  }
 
 window.addEventListener("DOMContentLoaded", function() {
     const slugNameEl = document.querySelector('.slug-name');
