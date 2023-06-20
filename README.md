@@ -30,10 +30,9 @@ Have you ever wanted a pet, but your apartment said no? Have you ever had a pet 
 - [x] Create database
 - [x] Store/retrieve info from database
 ### Login
-- [ ] Ability to create new user
-- [ ] If user exists, authenticate with username and password
-- [ ] User's data persists after logout and gets retrieved when logged in
-- [ ] Must be logged in to use the application
+- [x] Ability to create new user
+- [x] If user exists, authenticate with username and password
+- [x] Must be logged in to use the application
 ### WebSocket
 - [ ] Frontend initializes WebSocket connection
 - [ ] Backend listens for connection
