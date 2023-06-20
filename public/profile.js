@@ -203,7 +203,7 @@ function logout() {
     localStorage.removeItem('slugs');
     fetch(`/api/auth/logout`, {
       method: 'delete',
-    }).then(() => (window.location.href = '/'));
+    }).then(() => (window.location.href = 'index.html'));
   }
 
 window.addEventListener("DOMContentLoaded", function() {
