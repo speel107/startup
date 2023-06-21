@@ -34,9 +34,9 @@ Have you ever wanted a pet, but your apartment said no? Have you ever had a pet 
 - [x] If user exists, authenticate with username and password
 - [x] Must be logged in to use the application
 ### WebSocket
-- [ ] Frontend initializes WebSocket connection
-- [ ] Backend listens for connection
-- [ ] Data sent over the connection in real time
+- [x] Frontend initializes WebSocket connection
+- [x] Backend listens for connection
+- [x] Data sent over the connection in real time
 ### React
 - [ ] Application is structured through components
 - [ ] Routing between components established
