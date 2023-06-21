@@ -1,3 +1,6 @@
+// Event message
+const SlugCreatedEvent = 'slugCreated';
+
 const colorFilters = [
     "brightness(0) saturate(100%) invert(89%) sepia(3%) saturate(104%) hue-rotate(152deg) brightness(110%) contrast(98%)",
     "brightness(0) saturate(100%) invert(92%) sepia(23%) saturate(7148%) hue-rotate(147deg) brightness(93%) contrast(108%)",
@@ -99,6 +102,7 @@ class Profile {
 }
 
 class Workshop {
+    socket;
     profile;
     currFillIndex;
     currOutlineIndex;
@@ -111,6 +115,8 @@ class Workshop {
 
         this.currOutlineIndex = this.findCurrOutline();
         this.profile.setOutline(colorFilters[this.currOutlineIndex]);
+        this.configureWebSocket();
+        this.broadcastEvent(this.profile.username, SlugCreatedEvent, {});
     }
 
     findCurrFill() {
@@ -190,6 +196,36 @@ class Workshop {
 
     async leavePage() {  
         this.profile.saveSlug();
+    }
+
+    configureWebSocket() {
+        const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+        this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+        this.socket.onopen = (event) => {
+            this.displayMsg('system', 'slug', 'connected');
+        };
+        this.socket.onclose = (event) => {
+            this.displayMsg('system', 'slug', 'disconnected');
+        };
+        this.socket.onmessage = async (event) => {
+            const msg = JSON.parse(await event.data.text());
+            this.displayMsg('player', msg.from, `created a slug`);
+        };
+    }
+
+    displayMsg(cls, from, msg) {
+        const chatText = document.querySelector('#player-messages');
+        chatText.innerHTML =
+        `<div class="event"><span class="${cls}-event">${from}</span> ${msg}</div>` + chatText.innerHTML;
+    }
+
+    broadcastEvent(from, type, value) {
+        const event = {
+            from: from,
+            type: type,
+            value: value,
+        };
+        this.socket.onopen = () => this.socket.send(JSON.stringify(event));
     }
 }
 
